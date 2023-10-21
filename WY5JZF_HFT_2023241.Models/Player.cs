@@ -24,5 +24,7 @@ namespace WY5JZF_HFT_2023241.Models
         [ForeignKey("Team")]
         public int TeamID { get; set; }
 
+        public Player() { }
+
     }
 }

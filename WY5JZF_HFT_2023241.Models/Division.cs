@@ -13,9 +13,18 @@ namespace WY5JZF_HFT_2023241.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DivisionId { get; set; }
+        [Required]
+        [StringLength(120)]
+        public string DivisionName { get; set; }
 
+        public int Population { get; set; }
+
+        
         public virtual ICollection<Team> Teams { get; set; }
-
+        public Division()
+        {
+            Teams = new HashSet<Team>();
+        }
 
     }
 }

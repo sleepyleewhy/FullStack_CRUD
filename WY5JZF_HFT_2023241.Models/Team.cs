@@ -21,7 +21,11 @@ namespace WY5JZF_HFT_2023241.Models
         public virtual Division City { get; set; }
 
         [ForeignKey("Division")]
-        public int CityID { get; set; }
+        public int DivisionID { get; set; }
+        public Team()
+        {
+            Players = new HashSet<Player>();
+        }
 
     }
 }
