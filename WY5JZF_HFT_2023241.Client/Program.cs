@@ -1,4 +1,6 @@
 ﻿using System;
+using WY5JZF_HFT_2023241.Models;
+using WY5JZF_HFT_2023241.Repository;
 
 namespace WY5JZF_HFT_2023241.Client
 {
@@ -6,7 +8,7 @@ namespace WY5JZF_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            DBContext db = new DBContext()
         }
     }
 }
