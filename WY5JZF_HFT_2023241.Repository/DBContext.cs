@@ -18,19 +18,20 @@ namespace WY5JZF_HFT_2023241.Repository
         {
             if (!builder.IsConfigured)
             {
-                string conn = @"";
-                builder.UseSqlServer(conn);
+                // string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf"";Integrated Security=True;MultipleActiveResultSets=true";
+                builder.UseInMemoryDatabase("Basketball").UseLazyLoadingProxies();
             }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Team>(team => team.HasOne<Division>()
-            .WithMany().HasForeignKey(team => team.DivisionID)
+            modelBuilder.Entity<Team>(team => team.HasOne(team => team.Division)
+            .WithMany(division => division.Teams).HasForeignKey(team => team.DivisionID)
                 .OnDelete(DeleteBehavior.Cascade));
 
-            modelBuilder.Entity<Player>(player => player.HasOne<Team>()
-            .WithMany().HasForeignKey(player => player.TeamID)
+            modelBuilder.Entity<Player>(player => player.HasOne(player => player.Team)
+            .WithMany(team => team.Players).HasForeignKey(player => player.TeamID)
                            .OnDelete(DeleteBehavior.Cascade));
+
 
             Division Pacific = new Division { DivisionId = 1, DivisionName = "Pacific", Population = 10000000 };
             Division Atlantic = new Division { DivisionId = 2, DivisionName = "Atlantic", Population = 20000000 };

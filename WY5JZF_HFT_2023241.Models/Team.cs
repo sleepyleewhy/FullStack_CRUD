@@ -18,7 +18,7 @@ namespace WY5JZF_HFT_2023241.Models
         public virtual ICollection<Player> Players { get; set; }
 
         
-        public virtual Division City { get; set; }
+        public virtual Division Division { get; set; }
 
         [ForeignKey("Division")]
         public int DivisionID { get; set; }
