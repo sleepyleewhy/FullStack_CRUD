@@ -7,13 +7,13 @@ using WY5JZF_HFT_2023241.Models;
 
 namespace WY5JZF_HFT_2023241.Logic
 {
-    public interface IPlayerLogic
+    public interface IDivisionLogic
     {
-        void Create(Player item);
+        void Create(Division item);
         void Delete(int id);
-        IEnumerable<Team> ReadAll();
-        void Update(Player item);
-        Player Read(int id);
+        IEnumerable<Division> ReadAll();
+        void Update(Division item);
+        Division Read(int id);
 
     }
 }
