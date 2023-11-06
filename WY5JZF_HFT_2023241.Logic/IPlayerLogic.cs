@@ -11,7 +11,7 @@ namespace WY5JZF_HFT_2023241.Logic
     {
         void Create(Player item);
         void Delete(int id);
-        IEnumerable<Team> ReadAll();
+        IEnumerable<Player> ReadAll();
         void Update(Player item);
         Player Read(int id);
 

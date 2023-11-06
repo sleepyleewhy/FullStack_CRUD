@@ -10,7 +10,7 @@ using WY5JZF_HFT_2023241.Repository;
 
 namespace WY5JZF_HFT_2023241.Logic
 {
-    public class TeamLogic
+    public class TeamLogic : ITeamLogic
     {
         IRepository<Team> repo;
         public TeamLogic(IRepository<Team> repo)

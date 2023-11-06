@@ -5,7 +5,7 @@ using WY5JZF_HFT_2023241.Repository;
 
 namespace WY5JZF_HFT_2023241.Logic
 {
-    public class DivisionLogic
+    public class DivisionLogic : IDivisionLogic
     {
         IRepository<Division> repo;
         public DivisionLogic(IRepository<Division> repo)
