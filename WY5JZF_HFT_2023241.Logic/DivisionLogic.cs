@@ -51,7 +51,12 @@ namespace WY5JZF_HFT_2023241.Logic
         {
             return repo.Read(divisionID).Teams.Sum(t => t.FanCount);
         }
+        public Team TeamWithMostSalaryCostInDiv(int divID)
+        {
+            int maxSalary = repo.Read(divID).Teams.Max(t => t.Players.Sum(t => t.Salary));
 
+            return repo.Read(divID).Teams.FirstOrDefault(t => t.Players.Sum(t => t.Salary) == maxSalary);
+        }
 
 
 

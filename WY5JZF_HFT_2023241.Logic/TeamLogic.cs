@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Update.Internal;
+﻿using Castle.DynamicProxy;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -61,6 +62,7 @@ namespace WY5JZF_HFT_2023241.Logic
         public double AvgPointsPerTeam(int teamID)
         {
             return repo.Read(teamID).Players.Sum(t => t.AvgPoints);
+
         }
     }
 }
