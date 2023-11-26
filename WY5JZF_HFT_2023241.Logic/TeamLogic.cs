@@ -53,5 +53,14 @@ namespace WY5JZF_HFT_2023241.Logic
             repo.Update(item);
         }
 
+        public IEnumerable<Player> AllPosPlayerInTeam(int positionID, int teamID)
+        {
+            return repo.ReadAll().Where(t => t.TeamId == teamID).SelectMany(t => t.Players).Where(t => t.Position == positionID);
+
+        }
+        public double AvgPointsPerTeam(int teamID)
+        {
+            return repo.Read(teamID).Players.Sum(t => t.AvgPoints);
+        }
     }
 }

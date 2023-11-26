@@ -9,7 +9,7 @@ namespace WY5JZF_HFT_2023241.Repository
 {
     public class PlayerRepository : Repository<Player>, IRepository<Player>
     {
-        public PlayerRepository(DBContext ctx) : base(ctx)
+        public PlayerRepository(NBADBContext ctx) : base(ctx)
         {
         }
         public override Player Read(int id)

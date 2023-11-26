@@ -9,7 +9,7 @@ namespace WY5JZF_HFT_2023241.Repository
 {
     public class DivisionRepository : Repository<Division>, IRepository<Division>
     {
-        public DivisionRepository(DBContext ctx) : base(ctx)
+        public DivisionRepository(NBADBContext ctx) : base(ctx)
         {
         }
         public override Division Read(int id)

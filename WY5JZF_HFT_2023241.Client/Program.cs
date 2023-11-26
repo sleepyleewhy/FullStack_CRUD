@@ -8,7 +8,7 @@ namespace WY5JZF_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            DBContext db = new DBContext()
+            NBADBContext db = new NBADBContext()
         }
     }
 }

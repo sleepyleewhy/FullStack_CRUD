@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WY5JZF_HFT_2023241.Models;
 using WY5JZF_HFT_2023241.Repository;
 
@@ -44,6 +45,17 @@ namespace WY5JZF_HFT_2023241.Logic
         {
             repo.Update(item);
         }
+
+       
+        public int AllFansPerDivision(int divisionID)
+        {
+            return repo.Read(divisionID).Teams.Sum(t => t.FanCount);
+        }
+
+
+
+
+
         
     }
 }

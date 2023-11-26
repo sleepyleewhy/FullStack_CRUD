@@ -10,8 +10,8 @@ namespace WY5JZF_HFT_2023241.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        protected DBContext ctx;
-        public Repository(DBContext ctx)
+        protected NBADBContext ctx;
+        public Repository(NBADBContext ctx)
         {
             this.ctx = ctx;
         }

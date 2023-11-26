@@ -19,6 +19,10 @@ namespace WY5JZF_HFT_2023241.Models
 
         [Range(1,5)]
         public int Position { get; set; }
+
+        public double AvgPoints { get; set; }
+
+        public int Salary { get; set; }
         public virtual Team Team { get; set; }
 
         [ForeignKey("Team")]

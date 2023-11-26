@@ -9,7 +9,7 @@ namespace WY5JZF_HFT_2023241.Repository
 {
     public class TeamRepository : Repository<Team>, IRepository<Team>
     {
-        public TeamRepository(DBContext ctx) : base(ctx)
+        public TeamRepository(NBADBContext ctx) : base(ctx)
         {
         }
         public override Team Read(int id)

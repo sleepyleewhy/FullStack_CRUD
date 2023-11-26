@@ -50,5 +50,11 @@ namespace WY5JZF_HFT_2023241.Logic
             repo.Update(item);
         }
 
+        public IEnumerable<Player> Top3PointsInDiv(int divisionID)
+        {
+            return repo.ReadAll().Where(t => t.Team.DivisionID == divisionID).OrderByDescending(t => t.AvgPoints).Take(3);
+        }
+        
+
     }
 }
