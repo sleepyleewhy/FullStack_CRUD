@@ -18,7 +18,7 @@ namespace WY5JZF_HFT_2023241.Logic
         }
         public void Create(Player item)
         {
-            if (item.PlayerName.Length > 240 || item.Position < 1 || item.Position > 5)
+            if (item.PlayerName.Length > 240 || item.Position < 1 || item.Position > 5 || item.AvgPoints < 0)
             {
                 throw new ArgumentException("Invalid Player!");
             }
@@ -50,10 +50,7 @@ namespace WY5JZF_HFT_2023241.Logic
             repo.Update(item);
         }
 
-        public IEnumerable<Player> Top3PointsInDiv(int divisionID)
-        {
-            return repo.ReadAll().Where(t => t.Team.DivisionID == divisionID).OrderByDescending(t => t.AvgPoints).Take(3);
-        }
+        
         
 
     }

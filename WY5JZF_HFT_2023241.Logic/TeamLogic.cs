@@ -20,7 +20,7 @@ namespace WY5JZF_HFT_2023241.Logic
         }
         public void Create(Team item)
         {
-            if (item.TeamName.Length > 120 || item.FanCount.Equals(null))
+            if (item.TeamName.Length > 120 || item.FanCount.Equals(null) || item.FanCount < 0)
             {
                 throw new ArgumentException("Team data does not meet the requirements.");
             }

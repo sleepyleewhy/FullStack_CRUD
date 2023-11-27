@@ -58,9 +58,14 @@ namespace WY5JZF_HFT_2023241.Logic
             return repo.Read(divID).Teams.FirstOrDefault(t => t.Players.Sum(t => t.Salary) == maxSalary);
         }
 
+        public IEnumerable<Player> Top3PointsInDiv(int divisionID)
+        {
+            return repo.Read(divisionID).Teams.SelectMany(t => t.Players).OrderByDescending(t => t.AvgPoints).Take(3);
+        }
 
 
 
-        
+
+
     }
 }
