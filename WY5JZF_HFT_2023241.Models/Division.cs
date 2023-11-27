@@ -13,10 +13,13 @@ namespace WY5JZF_HFT_2023241.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int DivisionId { get; set; }
-        [Required]
+
+
         [StringLength(120)]
         public string DivisionName { get; set; }
 
+
+        [Required]
         public int Population { get; set; }
 
         

@@ -17,6 +17,7 @@ namespace WY5JZF_HFT_2023241.Models
 
         public virtual ICollection<Player> Players { get; set; }
 
+        [Required]
         public int FanCount { get; set; }
         
         public virtual Division Division { get; set; }
