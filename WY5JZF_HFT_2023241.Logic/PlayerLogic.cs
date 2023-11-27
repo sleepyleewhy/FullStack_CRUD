@@ -18,7 +18,7 @@ namespace WY5JZF_HFT_2023241.Logic
         }
         public void Create(Player item)
         {
-            if (item.PlayerName.Length > 240 || item.Position < 1 || item.Position > 5 )
+            if (item.PlayerName.Length > 240 || item.Position < 1 || item.Position > 5)
             {
                 throw new ArgumentException("Invalid Player!");
             }

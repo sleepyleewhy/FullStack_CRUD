@@ -32,7 +32,34 @@ namespace WY5JZF_HFT_2023241.Test
 
 
         [Test]
-        public 
+        public void PlayerCreateTest()
+        {
+            //Arrange
+            Player player = new Player()
+            {
+                AvgPoints= 23.2,
+                PlayerName = "Mock János",
+                Position = 2,
+                Salary = 5000
+            };
+
+            //Act
+            playerLogic.Create(player);
+
+            //Assert
+            mockPlayerRepo.Verify(r => r.Create(player), Times.Once);
+        }
+
+        public void DivisionCreateTest()
+        {
+            //Arrange
+            Division testDiv = new Division()
+            {
+                DivisionName = "Fejér",
+                Population = 10000
+            };
+
+        }
 
     }
 }

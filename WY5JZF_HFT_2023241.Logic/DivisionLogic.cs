@@ -15,9 +15,9 @@ namespace WY5JZF_HFT_2023241.Logic
         }
         public void Create(Division item)
         {
-            if (item.DivisionName.Length > 120)
+            if (item.DivisionName.Length > 120 || item.DivisionName == "")
             {
-                throw new ArgumentException("Division name too long!");
+                throw new ArgumentException("Division name does not meet the requirements.");
             }
             else
             {
