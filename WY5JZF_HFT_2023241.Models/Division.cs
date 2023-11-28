@@ -23,7 +23,7 @@ namespace WY5JZF_HFT_2023241.Models
         [Required]
         public int Population { get; set; }
 
-        [JsonIgnore]
+
         public virtual ICollection<Team> Teams { get; set; }
         public Division()
         {

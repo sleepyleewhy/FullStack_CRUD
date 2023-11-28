@@ -17,14 +17,12 @@ namespace WY5JZF_HFT_2023241.Models
         public string TeamName { get; set; }
 
 
-        [JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
 
         [Required]
         public int FanCount { get; set; }
 
         [JsonIgnore]
-        
         public virtual Division Division { get; set; }
 
         [ForeignKey("Division")]
