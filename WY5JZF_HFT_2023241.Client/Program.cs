@@ -77,19 +77,111 @@ namespace WY5JZF_HFT_2023241.Client
             Console.WriteLine(entity+ " update");
             if (entity == "Division")
             {
-                rest.Put<Division>()
+                Console.WriteLine("ID of Division : ");
+                int id = int.Parse(Console.ReadLine());
+                Division updatable = rest.Get<Division>(id, "division");
+                Console.WriteLine("Name of property to update: ");
+                string property = Console.ReadLine().ToLower();
+                Console.WriteLine("Value: ");
+                switch (property)
+                {
+                    case "divisionname":
+                        updatable.DivisionName = Console.ReadLine();
+                        break;
+                    case "population":
+                        updatable.Population = int.Parse(Console.ReadLine());
+                        break;
+                }
+                rest.Put<Division>(updatable, "division");
+                Console.WriteLine("Division updated.");
+            }
+            else if (entity == "Team")
+            {
+                Console.WriteLine("ID of Team : ");
+                int id = int.Parse(Console.ReadLine());
+                Team updatable = rest.Get<Team>(id, "team");
+                Console.WriteLine("Name of property to update: ");
+                string property = Console.ReadLine().ToLower();
+                Console.WriteLine("Value: ");
+                switch (property)
+                {
+                    case "teamname":
+                        updatable.TeamName= Console.ReadLine();
+                        break;
+                    case "fancount":
+                        updatable.FanCount= int.Parse(Console.ReadLine());
+                        break;
+                    case "divisionid":
+                        updatable.DivisionID = int.Parse(Console.ReadLine());
+                        break;
+                }
+                rest.Put<Team>(updatable, "team");
+                Console.WriteLine("Team updated.");
+            }
+            if (entity == "Player")
+            {
+                Console.WriteLine("ID of Player : ");
+                int id = int.Parse(Console.ReadLine());
+                Player updatable = rest.Get<Player>(id, "player");
+                Console.WriteLine("Name of property to update: ");
+                string property = Console.ReadLine().ToLower();
+                Console.WriteLine("Value: ");
+                switch (property)
+                {
+                    case "playername":
+                        updatable.PlayerName= Console.ReadLine();
+                        break;
+                    case "salary":
+                        updatable.Salary= int.Parse(Console.ReadLine());
+                        break;
+                    case "teamid":
+                        updatable.TeamID = int.Parse(Console.ReadLine());
+                        break;
+                    case "avgpoints":
+                        updatable.AvgPoints= double.Parse(Console.ReadLine());
+                        break;
+                    case "position":                        
+                        updatable.Position = int.Parse(Console.ReadLine());
+                        break;
+                }
+                rest.Put<Player>(updatable, "player");
+                Console.WriteLine("Division updated.");
             }
 
             Console.ReadLine();
         }
         static void Delete(string entity)
         {
-            Console.WriteLine(entity+ " delete");
+            if (entity == "Division")
+            {
+                Console.WriteLine("Id of Division : ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "division");
+                Console.WriteLine("Division deleted.");
+            }
+            else if (entity == "Team")
+            {
+                Console.WriteLine("Id of Team : ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "team");
+                Console.WriteLine("Team deleted.");
+            }
+            else if (entity == "Player")
+            {
+                Console.WriteLine("Id of Player: ");
+                int id = int.Parse(Console.ReadLine());
+                rest.Delete(id, "player");
+                Console.WriteLine("Player deleted.");
+            }
+
             Console.ReadLine();
         }
         static void Create(string entity)
         {
-            Console.WriteLine(entity + " create");
+            if (entity == "Division")
+            {
+                var 
+            }
             Console.ReadLine();
         }
 
