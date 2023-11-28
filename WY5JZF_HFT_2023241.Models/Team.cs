@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace WY5JZF_HFT_2023241.Models
 {
@@ -15,10 +16,14 @@ namespace WY5JZF_HFT_2023241.Models
         [StringLength(120)]
         public string TeamName { get; set; }
 
+
+        [JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
 
         [Required]
         public int FanCount { get; set; }
+
+        [JsonIgnore]
         
         public virtual Division Division { get; set; }
 
