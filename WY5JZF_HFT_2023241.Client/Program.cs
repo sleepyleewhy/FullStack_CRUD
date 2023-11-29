@@ -27,6 +27,7 @@ namespace WY5JZF_HFT_2023241.Client
                 .Add("Create", () => Create("Team"))
                 .Add("Delete", () => Delete("Team"))
                 .Add("Update", () => Update("Team"))
+                .Add("Read", () => Read("Team"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var playerSubMenu = new ConsoleMenu(args, level: 1)
@@ -34,6 +35,7 @@ namespace WY5JZF_HFT_2023241.Client
                 .Add("Create", () => Create("Player"))
                 .Add("Delete", () => Delete("Player"))
                 .Add("Update", () => Update("Player"))
+                .Add("Read", () => Read("Player"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
@@ -273,7 +275,19 @@ namespace WY5JZF_HFT_2023241.Client
                     Console.Write(item.PlayerName + " ");
                 }
             }
-            else if 
+            else if (entity == "Player")
+            {
+                Console.Write("ID of Player: ");
+                int id = int.Parse(Console.ReadLine());
+
+                Player player = rest.Get<Player>(id, "player");
+                Console.WriteLine("Player name: " + player.PlayerName);
+                Console.WriteLine("Player position: " + player.Position);
+                Console.WriteLine("Average points: " + player.AvgPoints);
+                Console.WriteLine("Salary: " + player.Salary);
+                Console.WriteLine("Team: " + player.Team.TeamName);
+
+            }
             Console.ReadLine();
         }
 
