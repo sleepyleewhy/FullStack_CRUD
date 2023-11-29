@@ -1,6 +1,7 @@
 ﻿using ConsoleTools;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using WY5JZF_HFT_2023241.Models;
 
 namespace WY5JZF_HFT_2023241.Client
@@ -18,6 +19,7 @@ namespace WY5JZF_HFT_2023241.Client
                 .Add("Create", () => Create("Division"))
                 .Add("Delete", () => Delete("Division"))
                 .Add("Update", () => Update("Division"))
+                .Add("Read", () => Read("Division"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var teamSubMenu = new ConsoleMenu(args, level: 1)
@@ -50,7 +52,7 @@ namespace WY5JZF_HFT_2023241.Client
                 List<Division> divisions = rest.Get<Division>("division");
                 foreach (Division division in divisions)
                 {
-                    Console.WriteLine(division.DivisionName);
+                    Console.WriteLine(division.DivisionName + " " + division.DivisionId);
                 }
             }
             else if (entity == "Team")
@@ -180,8 +182,98 @@ namespace WY5JZF_HFT_2023241.Client
         {
             if (entity == "Division")
             {
-                var 
+                Console.Write("Division Name: ");
+                string divname = Console.ReadLine();
+                Console.WriteLine();
+                Console.Write("Population: ");
+                int pop = int.Parse(Console.ReadLine());
+                Division div = new Division()
+                {
+                    DivisionName = divname,
+                    Population = pop
+                };
+                rest.Post(div, "division");
+                Console.WriteLine("Division created.");
             }
+            else if (entity == "Team")
+            {
+                Console.Write("Team name: ");
+                string teamname = Console.ReadLine();
+                Console.WriteLine();
+                Console.Write("Fan count: ");
+                int fan = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                Console.Write("Division id: ");
+                int divid = int.Parse(Console.ReadLine());
+
+                Team team = new Team()
+                {
+                    TeamName = teamname,
+                    FanCount = fan,
+                    DivisionID = divid
+                };
+                rest.Post(team, "team");
+                Console.WriteLine("Team created.");
+            }
+            else if (entity == "Player")
+            {
+                Console.Write("Player name: ");
+                string name = Console.ReadLine();                
+                Console.Write("Position: ");
+                int pos = int.Parse(Console.ReadLine());                
+                Console.Write("Average points: ");
+                double poi = double.Parse(Console.ReadLine());               
+                Console.Write("Salary: ");
+                int sal = int.Parse(Console.ReadLine());
+                Console.Write("Team id: ");
+                int teamid = int.Parse(Console.ReadLine());
+                Player player = new Player()
+                {
+                    AvgPoints = poi,
+                    PlayerName = name,
+                    Position = pos,
+                    Salary = sal,
+                    TeamID = teamid
+                };
+                rest.Post(player, "player");
+                Console.WriteLine("Player created.");
+            }
+            Console.ReadLine();
+        }
+        static void Read(string entity)
+        {
+            if (entity == "Division")
+            {
+                Console.Write("ID of Division: ");
+                int divid = int.Parse(Console.ReadLine());
+
+                Division div = rest.Get<Division>(divid, "division");
+                Console.WriteLine("Division name: "+ div.DivisionName);
+                Console.WriteLine("Population: "+ div.Population);
+                Console.Write("Teams: ");
+                foreach (Team item in div.Teams)
+                {
+                    Console.Write(item.TeamName + " ");
+                }
+
+
+            }
+            else if (entity == "Team")
+            {
+                Console.Write("ID of Team: ");
+                int id = int.Parse(Console.ReadLine());
+                Team team = rest.Get<Team>(id, "team");
+
+                Console.WriteLine("Team name: "+ team.TeamName);
+                Console.WriteLine("Fan count: "+ team.FanCount);
+                Console.WriteLine("Division: " + team.Division.DivisionName);
+                Console.Write("Players: ");
+                foreach (Player item in team.Players)
+                {
+                    Console.Write(item.PlayerName + " ");
+                }
+            }
+            else if 
             Console.ReadLine();
         }
 
