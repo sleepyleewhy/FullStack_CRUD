@@ -32,6 +32,22 @@ namespace WY5JZF_HFT_2023241.Endpoint.Controllers
             return teamLogic.AvgPointsPerTeam(teamID);
         }
 
+        [HttpGet("{divisionID}")]
+        public IEnumerable<Player> Top3PointsInDiv(int divisionID)
+        {
+            return divLogic.Top3PointsInDiv(divisionID);
+        }
+
+        [HttpGet("{divisionID}")]
+        public int AllFansPerDivision(int divisionID)
+        {
+            return divLogic.AllFansPerDivision(divisionID);
+        }
+        [HttpGet("{divID}")]
+        public Team TeamWithMostSalaryCostInDiv(int divID)
+        {
+            return divLogic.TeamWithMostSalaryCostInDiv(divID);
+        }
 
     }
 }
