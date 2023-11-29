@@ -14,6 +14,9 @@ namespace WY5JZF_HFT_2023241.Logic
         IEnumerable<Division> ReadAll();
         void Update(Division item);
         Division Read(int id);
+        int AllFansPerDivision(int divisionID);
+        Team TeamWithMostSalaryCostInDiv(int divID);
+        IEnumerable<Player> Top3PointsInDiv(int divisionID);
 
     }
 }
