@@ -38,10 +38,14 @@ namespace WY5JZF_HFT_2023241.Client
                 .Add("Read", () => Read("Player"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var statSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("All player in selected position in team", () => AllPosPlayerInTeam());
+
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Divisions", () => divisionSubMenu.Show())
                 .Add("Teams", () => teamSubMenu.Show())
-                .Add("Players", () => playerSubMenu.Show());
+                .Add("Players", () => playerSubMenu.Show())
+                .Add("Statistics", () => statSubMenu.Show());
 
 
             menu.Show();
@@ -286,11 +290,24 @@ namespace WY5JZF_HFT_2023241.Client
                 Console.WriteLine("Average points: " + player.AvgPoints);
                 Console.WriteLine("Salary: " + player.Salary);
                 Console.WriteLine("Team: " + player.Team.TeamName);
-
             }
             Console.ReadLine();
         }
+        static void AllPosPlayerInTeam()
+        {
+            Console.Write("Position ID: ");
+            int posid = int.Parse(Console.ReadLine());
+            Console.Write("Team ID: ");
+            int teamid = int.Parse(Console.ReadLine());
 
+            var result = rest.Get<Player>($"Stat/AllPosPlayerInTeam/{posid}/{teamid}");
+
+            foreach (Player player in result)
+            {
+                Console.WriteLine(player.PlayerName);
+            }
+            Console.ReadLine();
+        }
 
         
     }
