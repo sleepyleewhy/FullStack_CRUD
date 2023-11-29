@@ -39,13 +39,19 @@ namespace WY5JZF_HFT_2023241.Client
                 .Add("Exit", ConsoleMenu.Close);
 
             var statSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("All player in selected position in team", () => AllPosPlayerInTeam());
+                .Add("All player in selected position in team", () => AllPosPlayerInTeam())
+                .Add("Average points of selected team per game", () => AvgPointsPerTeam())
+                .Add("Top 3 average points in selected division", () => Top3PointsInDiv())
+                .Add("Number of fans in the selected division", () => AllFansPerDivision())
+                .Add("Team with the most salary cost in the division", () => TeamWithMostSalaryCostInDiv())
+                .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Divisions", () => divisionSubMenu.Show())
                 .Add("Teams", () => teamSubMenu.Show())
                 .Add("Players", () => playerSubMenu.Show())
-                .Add("Statistics", () => statSubMenu.Show());
+                .Add("Statistics", () => statSubMenu.Show())
+                .Add("Exit", ConsoleMenu.Close);
 
 
             menu.Show();
@@ -308,7 +314,53 @@ namespace WY5JZF_HFT_2023241.Client
             }
             Console.ReadLine();
         }
+        static void AvgPointsPerTeam()
+        {
+            Console.Write("Team ID: ");
+            int teamid = int.Parse(Console.ReadLine());
 
-        
+            var result = rest.GetSingle<double>($"Stat/AvgPointsPerTeam/{teamid}");
+
+            Console.WriteLine("Average points per game: " + result);
+
+            Console.ReadLine();
+        }
+        static void Top3PointsInDiv()
+        {
+            Console.Write("Division ID: ");
+            int divid = int.Parse(Console.ReadLine());
+
+            var result = rest.Get<Player>($"Stat/Top3PointsInDiv/{divid}");
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                Console.WriteLine($"{i+1}: {result[i].PlayerName}, points: {result[i].AvgPoints}");
+            }
+            Console.ReadLine();
+
+        }
+        static void AllFansPerDivision()
+        {
+            Console.Write("Division ID: ");
+            int divid = int.Parse(Console.ReadLine());
+
+            int result = rest.GetSingle<int>($"/Stat/AllFansPerDivision/{divid}");
+            Console.WriteLine("Fans in the division: " + result);
+            Console.ReadLine();
+        }
+        static void TeamWithMostSalaryCostInDiv()
+        {
+            Console.Write("Division ID: ");
+            int divid = int.Parse(Console.ReadLine());
+
+            var result = rest.GetSingle<Team>($"/Stat/TeamWithMostSalaryCostInDiv/{divid}");
+
+            Console.WriteLine($"Team with most salary cost: {result.TeamName}");
+
+            Console.ReadLine();
+        }
+
+
+
     }
 }
