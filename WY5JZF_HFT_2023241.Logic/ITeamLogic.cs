@@ -14,6 +14,8 @@ namespace WY5JZF_HFT_2023241.Logic
         IEnumerable<Team> ReadAll();
         void Update(Team item);
         Team Read(int id);
+        IEnumerable<Player> AllPosPlayerInTeam(int positionID, int teamID);
+        double AvgPointsPerTeam(int teamID);
 
     }
 }
