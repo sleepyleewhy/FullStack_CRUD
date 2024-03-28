@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WY5JZF_HFT_2023241.Endpoint.Services;
 using WY5JZF_HFT_2023241.Logic;
 using WY5JZF_HFT_2023241.Models;
 using WY5JZF_HFT_2023241.Repository;
@@ -37,7 +38,7 @@ namespace WY5JZF_HFT_2023241.Endpoint
             services.AddTransient<IPlayerLogic, PlayerLogic>();
             services.AddTransient<ITeamLogic, TeamLogic>();
             services.AddTransient<IDivisionLogic, DivisionLogic>();
-
+            services.AddSignalR();
 
 
 
@@ -65,6 +66,7 @@ namespace WY5JZF_HFT_2023241.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

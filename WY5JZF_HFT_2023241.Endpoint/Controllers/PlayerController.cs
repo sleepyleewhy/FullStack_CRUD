@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using WY5JZF_HFT_2023241.Endpoint.Services;
 using WY5JZF_HFT_2023241.Logic;
 using WY5JZF_HFT_2023241.Models;
 
@@ -11,18 +14,19 @@ namespace WY5JZF_HFT_2023241.Endpoint.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-
+        IHubContext<SignalRHub> hub;
 
         IPlayerLogic logic;
 
-        public PlayerController(IPlayerLogic logic)
+        public PlayerController(IPlayerLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         // GET: api/<PlayerController>
         [HttpGet]
-        public IEnumerable<Player> CreatReadAll()
+        public IEnumerable<Player> ReadAll()
         {
             return this.logic.ReadAll();
         }
@@ -39,6 +43,7 @@ namespace WY5JZF_HFT_2023241.Endpoint.Controllers
         public void Create([FromBody] Player value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("PlayerCreated", value);
         }
 
         // PUT api/<PlayerController>/5
@@ -46,13 +51,16 @@ namespace WY5JZF_HFT_2023241.Endpoint.Controllers
         public void Update([FromBody] Player value)
         {
            this.logic.Update(value);
+           this.hub.Clients.All.SendAsync("PlayerUpdated", value);
         }
 
         // DELETE api/<PlayerController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
-        {
+       {
+            Player player = this.logic.Read(id);
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("PlayerDeleted", player);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace WY5JZF_HFT_2023241.Endpoint.Controllers
 
         // GET: api/<PlayerController>
         [HttpGet]
-        public IEnumerable<Division> CreatReadAll()
+        public IEnumerable<Division> ReadAll()
         {
             return this.logic.ReadAll();
         }

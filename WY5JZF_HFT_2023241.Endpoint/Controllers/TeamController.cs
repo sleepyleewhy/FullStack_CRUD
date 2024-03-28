@@ -21,7 +21,7 @@ namespace WY5JZF_HFT_2023241.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Team> CreatReadAll()
+        public IEnumerable<Team> ReadAll()
         {
             return this.logic.ReadAll();
         }
