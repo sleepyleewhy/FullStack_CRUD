@@ -15,30 +15,6 @@ namespace WY5JZF_GUI_2023242.WPFClient
     {
         public RestCollection<Player> Players { get; set; }
         private Player selectedPlayer;
-        private bool isPlayerVisible;
-
-        public bool IsPlayerVisible
-        {
-            get { return isPlayerVisible; }
-            set { isPlayerVisible = value; }
-        }
-        private bool isDivisionVisible;
-
-        public bool IsDivisionVisible
-        {
-            get { return isDivisionVisible; }
-            set { isDivisionVisible = value; }
-        }
-        private bool isTeamVisible;
-
-        public bool IsTeamVisible
-        {
-            get { return isTeamVisible; }
-            set { isTeamVisible = value; }
-        }
-
-
-
         public Player SelectedPlayer
         {
             get { return selectedPlayer; }
@@ -57,17 +33,73 @@ namespace WY5JZF_GUI_2023242.WPFClient
                     };
                     OnPropertyChanged();
                     (DeletePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdatePlayerCommand as RelayCommand).NotifyCanExecuteChanged();
                 }
-               
                 
             }
         }
+        public RestCollection<Team> Teams { get; set; }
+
+        private Team selectedTeam;
+
+        public Team SelectedTeam
+        {
+            get { return selectedTeam; }
+            set 
+            {
+                if(value != null)
+                {
+                    selectedTeam = new Team()
+                    {
+                        TeamName = value.TeamName,
+                        TeamId = value.TeamId,
+                        DivisionID = value.DivisionID,
+                        FanCount = value.FanCount,
+                        Players = value.Players
+                    };
+                    OnPropertyChanged();
+                    (DeleteTeamCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateTeamCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
+            }
+        }
+
+        public RestCollection<Division> Divisions { get; set; }
+
+        private Division selectedDivision;
+
+        public Division SelectedDivision
+        {
+            get { return selectedDivision; }
+            set 
+            {
+                if (value != null)
+                {
+                    selectedDivision = new Division()
+                    {
+                        DivisionName = value.DivisionName,
+                        DivisionId = value.DivisionId,
+                        Population = value.Population,
+                        Teams = value.Teams
+                    };
+                    OnPropertyChanged();
+                    (DeleteDivisionCommand as RelayCommand).NotifyCanExecuteChanged();
+                    (UpdateDivisionCommand as RelayCommand).NotifyCanExecuteChanged();
+                }
+            }
+        }
+
+
+
 
 
         public MainWindowViewModel()
         {
             
             Players = new RestCollection<Player>("http://localhost:40930/", "player", "hub");
+            Teams = new RestCollection<Team>("http://localhost:40930/", "team", "hub");
+            Divisions= new RestCollection<Division>("http://localhost:40930/", "division", "hub");
+
 
             CreatePlayerCommand = new RelayCommand(() =>
             {
@@ -100,14 +132,81 @@ namespace WY5JZF_GUI_2023242.WPFClient
             UpdatePlayerCommand = new RelayCommand(() =>
             {
                 Players.Update(selectedPlayer);
-            });
+            }, () => { return selectedPlayer != null; });
 
             SelectedPlayer = new Player();
-            IsPlayerVisible = false;
+
+            CreateTeamCommand = new RelayCommand(() =>
+            {
+                
+                if (SelectedTeam.TeamName != null)
+                {
+                    Team teamToAdd = new Team();
+                    teamToAdd.TeamName = SelectedTeam.TeamName;
+                    teamToAdd.FanCount = SelectedTeam.FanCount;
+                    teamToAdd.DivisionID = SelectedTeam.DivisionID;
+                    Teams.Add(teamToAdd);
+                }
+                else
+                {
+                    Teams.Add(SelectedTeam);
+                }
+            });
+
+            UpdateTeamCommand = new RelayCommand(() =>
+            {
+                Teams.Update(SelectedTeam);
+            },
+            () =>
+            {
+                return SelectedTeam != null;
+            });
+            DeleteTeamCommand = new RelayCommand(() =>
+            {
+                Teams.Delete(SelectedTeam.TeamId);
+            },
+            () =>
+            {
+                return SelectedTeam != null;
+            });
+
+            CreateDivisionCommand = new RelayCommand(() =>
+            {
+                if (SelectedDivision.DivisionName != null)
+                {
+                    Division divisionToAdd = new Division();
+                    divisionToAdd.DivisionName = SelectedDivision.DivisionName;
+                    divisionToAdd.Population = SelectedDivision.Population;
+                    Divisions.Add(divisionToAdd);
+                }
+                else
+                {
+                    Divisions.Add(SelectedDivision);
+                }
+            });
+            UpdateDivisionCommand = new RelayCommand(() =>
+            {
+                Divisions.Update(SelectedDivision);
+            },
+            () =>
+            {
+                return SelectedDivision != null;
+            });
+
         }
 
         public ICommand CreatePlayerCommand { get; set; }
         public ICommand DeletePlayerCommand { get; set; }
         public ICommand UpdatePlayerCommand { get; set; }
+
+        public ICommand CreateTeamCommand { get; set; }
+        public ICommand DeleteTeamCommand { get; set; }
+        public ICommand UpdateTeamCommand { get; set; }
+
+        public ICommand CreateDivisionCommand { get; set; }
+        public ICommand DeleteDivisionCommand { get; set; }
+        public ICommand UpdateDivisionCommand { get; set; }
+
+
     }
 }
