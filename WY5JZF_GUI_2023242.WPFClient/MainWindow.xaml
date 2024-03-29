@@ -42,13 +42,190 @@
             </Grid>
         </TabItem>
         <TabItem Header="Teams">
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding TeamName}"></Label>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Team Name" Background="LightGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedTeam.TeamName}" Padding="10"/>
+                    <Label Content="Division ID" Background="LightGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedTeam.DivisionID}" Padding="10"/>
+                    <Label Content="Fan Count" Background="LightGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedTeam.FanCount}" Padding="10"/>
+                    <Button Content="Create Team" Command="{Binding CreateTeamCommand}" Margin="10" Padding="10"/>
+                    <Button Content="Delete Team" Command="{Binding DeleteTeamCommand}" Margin="10" Padding="10"/>
+                    <Button Content="Update Team" Command="{Binding UpdateTeamCommand}" Margin="10" Padding="10"/>
+                </StackPanel>
+            </Grid>
         </TabItem>
         <TabItem Header="Divisions">
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox ItemsSource="{Binding Divisions}" SelectedItem="{Binding SelectedDivision}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding DivisionName}"></Label>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Division Name" Background="LightGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedDivision.DivisionName}" Padding="10"/>
+                    <Label Content="Population" Background="LightGreen" Padding="10"/>
+                    <TextBox Text="{Binding SelectedDivision.Population}" Padding="10"/>
+                    <Button Content="Create Division" Command="{Binding CreateDivisionCommand}" Margin="10" Padding="10"/>
+                    <Button Content="Delete Division" Command="{Binding DeleteDivisionCommand}" Margin="10" Padding="10"/>
+                    <Button Content="Update Division" Command="{Binding UpdateDivisionCommand}" Margin="10" Padding="10"/>
+                </StackPanel>
+            </Grid>
+
         </TabItem>
         <TabItem Header="Statistics">
-            
+            <TabControl>
+                <TabItem Header="Stat No.1">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Label Content="All players in the chosen position in the chosen team" FontWeight="Bold" Margin="10" Padding="10"/>
+                            <Label Content="Team" Padding="10" Background="LightGreen"></Label>
+                            <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding AllPosPlayerInTeamTeam}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding TeamName}"></Label>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Label Content="Chosen Position" Padding="10" Background="LightGreen"/>
+                            <TextBox Text="{Binding AllPosPlayerInTeamPosition, UpdateSourceTrigger=PropertyChanged}" Padding="10" ></TextBox>
+                            <Button Content="Show" Command="{Binding AllPosPlayerInTeamCommand}" Margin="10" Padding="10"/>
+                        </StackPanel>
+
+                        <ListBox ItemsSource="{Binding AllPosPlayerInTeamList}" Grid.Column="1">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding PlayerName}"></Label>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Stat No.2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1">
+                            <Label Content="Average points by Team per match" Margin="10" Padding="10" FontWeight="Bold"></Label>
+                            <ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding AvgPointsPerTeamTeam}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding TeamName}"></Label>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Label Content="Average Points" Padding="10" Background="LightGreen"/>
+                            <Label Content="{Binding AvgPointsPerTeamResult}" Margin="10" Padding="10" FontWeight="Bold"></Label>
+                            <Button Content="Show" Command="{Binding AvgPointsPerTeamCommand}" Margin="10" Padding="10"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Stat No.3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Label Content="Players with the top 3 average points" FontWeight="Bold" Margin="10" Padding="10"/>
+                            <Label Content="Team" Padding="10" Background="LightGreen"></Label>
+                            <ComboBox ItemsSource="{Binding Divisions}" SelectedItem="{Binding Top3PointsInDivDiv}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                       <Label Content="{Binding DivisionName}"></Label>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button Content="Show" Command="{Binding Top3PointsInDivCommand}" Margin="10" Padding="10"/>
+                        </StackPanel>
+
+                        <ListBox ItemsSource="{Binding Top3PointsInDivResult}" Grid.Column="1">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding PlayerName}"></Label>
+                                        <Label Content="{Binding AvgPoints}" ContentStringFormat="({0})"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Stat No.4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1">
+                            <Label Content="The amount of fans in the chosen division" Margin="10" Padding="10" FontWeight="Bold"></Label>
+                            <ComboBox ItemsSource="{Binding Divisions}" SelectedItem="{Binding AllFansPerDivisionDiv}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding DivisionName}"></Label>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Label Content="Amount of fans:" Padding="10" Background="LightGreen"/>
+                            <Label Content="{Binding AllFansPerDivisionResult}" Margin="10" Padding="10" FontWeight="Bold"></Label>
+                            <Button Content="Show" Command="{Binding AllFansPerDivisionCommand}" Margin="10" Padding="10"/>
+                        </StackPanel>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Stat No.5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1">
+                            <Label Content="The team with the most salary cost in the chosen division" Margin="10" Padding="10" FontWeight="Bold"></Label>
+                            <ComboBox ItemsSource="{Binding Divisions}" SelectedItem="{Binding TeamWithMostSalaryCostInDivDiv}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding DivisionName}"></Label>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Label Content="Team with most salary cost:" Padding="10" Background="LightGreen"/>
+                            <Label Content="{Binding TeamWithMostSalaryCostInDivResult.TeamName}" Margin="10" Padding="10" FontWeight="Bold"></Label>
+                            <Button Content="Show" Command="{Binding TeamWithMostSalaryCostInDivCommand}" Margin="10" Padding="10"/>
+                        </StackPanel>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
         </TabItem>
     </TabControl>
     
