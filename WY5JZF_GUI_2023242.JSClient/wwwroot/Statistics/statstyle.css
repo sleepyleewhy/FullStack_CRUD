@@ -1,0 +1,97 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #1e90ff; /* Narancssárga szín az NBA színeiből */
+    text-align: center;
+}
+
+
+button {
+    display: flex;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 30%; /* A show gomb szélessége kisebb */
+    padding: 8px; /* Kis méretű padding a gombokhoz */
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #FFA500; /* Kék szín az NBA színeiből */
+    color: #fff;
+    cursor: pointer;
+    text-align: center; /* Gomb szövege középre igazítva */
+    justify-content: center;
+}
+
+    button:hover {
+        background-color: #FF8C00; /* Sötétebb kék szín hover esetén az NBA színeiből */
+    }
+
+#backButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4169E1; /* Narancssárga szín az NBA színeiből */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+    #backButton:hover {
+        background-color: #1E90FF; /* Sötétebb narancssárga szín hover esetén az NBA színeiből */
+    }
+
+/* Stílus az input mezőkhöz */
+input[type="text"],
+input[type="number"],
+select {
+    width: 30%; /* Input mezők és select elemek szélessége */
+    padding: 8px; /* Kis méretű padding az input mezőkhöz és select elemekhez */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center; /* Input mezők és select elemek szövege középre igazítva */
+    display: block; /* Ezek blokkszintű elemek legyenek */
+    margin: 0 auto; /* Középre igazítás */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold; /* Félkövér stílus a labelhez */
+    text-align: center; /* Label szövege középre igazítva */
+}
+
+/* Stílus a kimeneti értékeket adó label elemekhez */
+.output-label {
+    font-weight: bold; /* Félkövér stílus a kimeneti labelhez */
+    color: #333;
+    text-align: center; /* Kimeneti label szövege középre igazítva */
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}

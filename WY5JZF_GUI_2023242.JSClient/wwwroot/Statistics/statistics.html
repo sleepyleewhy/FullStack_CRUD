@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Statistics UI</title>
+    <link rel="stylesheet" href="statstyle.css" />
 </head>
 <body>
     <button type="button" onclick="goBack()" id="backButton">Main Page</button>
@@ -11,13 +12,84 @@
         <button onclick="allpos()">All Player in position in team</button>
         <button onclick="avgPerTeam()">Avg Points Per Team</button>
         <button onclick="top3inDiv()">Top 3 Scorers in Division</button>
-        <button onclick="allFansPerDiv()">All Fans per Division</button>
+        <button onclick="allFansInDiv()">All Fans in Division</button>
         <button onclick="teamWithMostSCost()">Team with most Salary cost</button>
     </div>
 
 
+    <div id="AllPosPlayer_form" style="display:none">
+        <label>Select the Team</label>
+        <select id="allposplayer_selectTeam"></select>
+        <label>Select the position</label>
+        <input type="number" id="selectPos" />
+        <button id="show"onclick="allpos_send()">Show</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Player Name</th>
+                </tr>
+            </thead>
+            <tbody id="AllPosPlayer_result"></tbody>
+        </table>
+
+    </div>
+
+
+
+    <div id="AvgPerTeam_form" style="display:none">
+        <label>Select the Team</label>
+        <select id="avgperteam_selectTeam"></select>
+        <button onclick="avgperteam_send()">Show</button>
+
+        <label>Average Points: </label>
+        <label id="AvgPerTeam_result"></label>
+
+
+    </div>
+
+    <div id="Top3InDiv_form" style="display:none">
+        <label>Select the Division</label>
+        <select id="top3indiv_selectDivision"></select>
+        <button onclick="top3indiv_send()">Show</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Average Points</th>
+                </tr>
+            </thead>
+            <tbody id="Top3InDiv_result"></tbody>
+        </table>
+
+    </div>
+
+    <div id="AllFansInDiv_form" style="display:none">
+        <label>Select the Division</label>
+        <select id="allfansindiv_selectDivision"></select>
+        <button onclick="allfansindiv_send()">Show</button>
+
+        <label>Fans:</label>
+        <label id="AllFansInDiv_result"></label>
+
+    </div>
+
+    <div id="TeamWithMostSCost_form" style="display:none">
+        <label>Select the Division</label>
+        <select id="teamwithmostscost_selectDivision"></select>
+        <button onclick="teamwithmostscost_send()">Show</button>
+
+        <label>Team:</label>
+        <label id="TeamWithMostSCost_result"></label>
+
+    </div>
+
 
     <script src="../script.js"></script>
-    <script src="noncrudscript.js"></script>
+    <script src="statisticsscript.js"></script>
+    <script>
+        initArrays();
+    </script>
 </body>
 </html>
