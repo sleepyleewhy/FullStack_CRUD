@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Division UI</title>
+    <link rel="stylesheet" href="divisionstyle.css" />
+
+</head>
+<body>
+    <button type="button" onclick="goBack()" id="backButton">Main Page</button>
+    <h1>Division</h1>
+
+    <div id="create">
+        <label>Division name</label>
+        <input type="text" id="divisionName" />
+        <label>Population</label>
+        <input type="number" id="divisionPopulation" />
+        <button type="button" onclick="create()">Create Division</button>
+    </div>
+
+    <div id="update">
+        <label>Updated Division name</label>
+        <input type="text" id="divisionupdateName" />
+        <label>Updated Population</label>
+        <input type="number" id="divisionupdatePopulation" />
+        <button type="button" onclick="update()">Update Division</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Division Name</th>
+                <th>Population</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="divisiontable"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="divisionscript.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

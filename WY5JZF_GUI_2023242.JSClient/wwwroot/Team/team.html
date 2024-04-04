@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Team UI</title>
+    <link rel="stylesheet" href="teamstyle.css" />
+
+</head>
+<body>
+    <button type="button" onclick="goBack()" id="backButton">Main Page</button>
+    <h1>Team</h1>
+
+    <div id="create">
+        <label>Team name</label>
+        <input type="text" id="teamName" />
+        <label>Fan count</label>
+        <input type="number" id="teamfancount" />
+        <label>Division ID</label>
+        <input type="number" id="teamdivid" />
+        <button type="button" onclick="create()">Create Team</button>
+    </div>
+
+    <div id="update">
+        <label>Updated Team name</label>
+        <input type="text" id="teamupdateName" />
+        <label>Updated Fan count</label>
+        <input type="number" id="teamupdatefancount" />
+        <label>Updated Division ID</label>
+        <input type="number" id="teamupdatedivid" />
+        <button type="button" onclick="update()">Update Team</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Team Name</th>
+                <th>Fan Count</th>
+                <th>Division ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="teamtable"></tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="teamscript.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>

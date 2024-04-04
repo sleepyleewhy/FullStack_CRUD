@@ -59,6 +59,12 @@ namespace WY5JZF_HFT_2023241.Endpoint
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WY5JZF_HFT_2023241.Endpoint v1"));
             }
 
+            app.UseCors(x => x
+                    .AllowCredentials()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithOrigins("http://localhost:28833"));
+
             app.UseRouting();
 
             app.UseAuthorization();
